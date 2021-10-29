@@ -3,12 +3,12 @@ Code for jointly training a deep neural network with the SDGM as the last layer
 
 ## Usage
 Import the SDGM class when you build a network.
-```markdown
+```
 from SDGM import SDGM
 ```
 
-The SDGM class can be used in the similar way as torch.nn.Linear.
-```markdown
+The SDGM class can be used in a similar way as torch.nn.Linear.
+```
 # In _init__() function
 self.n_class = ... # Number of classes
 self.n_component = ... # Number of Gaussian components
@@ -19,12 +19,12 @@ x = self.last(x)
 ```
 
 The ELBOLoss class in torch_arg.py is required for training. 
-```markdown
+```
 from torch_ard import ELBOLoss
 ```
 
 In the main loop of training, ELBOLoss is used instead of the corss entropy. 
-```markdown
+```
 def get_kl_weight(epoch, max_epoch): return min(1, 1e-9 * epoch / max_epoch)
 criterion = ELBOLoss(model, F.cross_entropy).to("cuda")
 for epoch in ...:
